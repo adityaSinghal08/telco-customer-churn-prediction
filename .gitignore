@@ -1,0 +1,46 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# =========================
+# Virtual Environments
+# =========================
+.venv/
+venv/
+ENV/
+env/
+
+# =========================
+# Jupyter Notebook
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# OS / Editor Files
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Data (except raw data)
+# =========================
+data/interim/
+data/processed/
+
+# =========================
+# Logs & Temporary Files
+# =========================
+*.log
+*.tmp
+
+# =========================
+# uv / Dependency Artifacts
+# =========================
+uv-cache/
