@@ -1,24 +1,24 @@
-## Exploratory Data Analysis — Key Observations
+## Exploratory Data Analysis (EDA)
 
-This section summarizes the key insights obtained from exploratory analysis of customer demographics, subscribed services, billing behavior, and engineered features, with respect to customer churn.
+This section summarizes the key insights obtained from exploratory analysis of customer demographics, services, billing behavior, engineered features, and numerical correlations, with respect to customer churn. Observations are based on churn rate comparisons, distributional analysis, and correlation analysis.
 
 ---
 
 ### Demographic Factors
 
-- **Gender** shows negligible impact on churn, with male and female customers exhibiting nearly identical churn rates. This indicates that gender is a weak standalone predictor of churn.
+- **Gender** shows negligible impact on churn, with male and female customers exhibiting nearly identical churn rates. Gender is therefore a weak standalone predictor of churn.
 
-- **Senior Citizen status** has a strong association with churn. Senior customers churn at significantly higher rates than non-senior customers, making this a high-risk demographic segment.
+- **Senior Citizen status** has a strong association with churn. Senior customers churn at significantly higher rates than non-senior customers, identifying this group as a high-risk demographic segment.
 
 - **Partner status** is strongly linked to retention. Customers without a partner churn much more frequently, suggesting that household stability reduces churn risk.
 
-- **Dependents** have one of the strongest negative correlations with churn. Customers with dependents rarely churn, indicating that family-based usage significantly increases customer stickiness.
+- **Dependents** exhibit one of the strongest negative relationships with churn. Customers with dependents rarely churn, indicating that family-based usage significantly increases customer stickiness.
 
 ---
 
 ### Core Services
 
-- **Phone Service** alone does not meaningfully impact churn. Customers with and without phone service exhibit similar churn behavior, indicating low predictive value.
+- **Phone Service** alone does not meaningfully impact churn. Customers with and without phone service show similar churn behavior, indicating low predictive value.
 
 - **Multiple Lines** are associated with slightly higher churn, possibly due to increased cost or billing complexity, though the effect is relatively weak.
 
@@ -28,15 +28,15 @@ This section summarizes the key insights obtained from exploratory analysis of c
 
 - **Online Security**, **Online Backup**, **Device Protection**, and **Tech Support** all act as protective factors. Customers subscribing to these services churn at substantially lower rates, highlighting the importance of service reliability and perceived value.
 
-- The **Digital Security Bundle** (combined protection and support services) is one of the strongest retention indicators. Customers with the full bundle exhibit extremely low churn rates, indicating very high commitment and switching costs.
+- The **Digital Security Bundle** (combined protection and support services) is one of the strongest retention indicators. Customers with the full bundle exhibit extremely low churn rates, suggesting very high commitment and switching costs.
 
-- **Total Add-On Services** shows a clear inverse relationship with churn. Customers with few or no add-ons churn the most, while churn decreases steadily as the number of add-on services increases, reinforcing the concept of service stickiness.
+- **Total Add-On Services** shows a clear inverse relationship with churn. Customers with few or no add-ons churn the most, while churn decreases steadily as the number of add-on services increases. Correlation analysis indicates this relationship is likely non-linear or threshold-based rather than strictly linear.
 
 ---
 
 ### Streaming Services
 
-- **Streaming TV** and **Streaming Movies** are associated with higher churn rates. Streaming customers appear more price-sensitive and less loyal, suggesting that streaming services alone do not significantly improve customer retention.
+- **Streaming TV** and **Streaming Movies** are associated with higher churn rates. Streaming customers appear more price-sensitive and less loyal, indicating that streaming services alone do not significantly improve customer retention.
 
 ---
 
@@ -44,7 +44,7 @@ This section summarizes the key insights obtained from exploratory analysis of c
 
 - **Paperless Billing** customers churn at significantly higher rates. This may reflect greater flexibility and lower switching costs among digitally savvy customers.
 
-- **Auto Payment** is a strong retention signal. Customers enrolled in automatic payment methods churn at less than half the rate of those using manual payment methods.
+- **Auto Payment** is a strong retention signal. Customers enrolled in automatic payment methods churn at less than half the rate of those using manual payments.
 
 - **Payment Method** has a major impact on churn. Customers using electronic checks exhibit the highest churn rates, while customers using automatic bank transfers or credit cards churn far less.
 
@@ -52,7 +52,7 @@ This section summarizes the key insights obtained from exploratory analysis of c
 
 ### Internet Service Type
 
-- **Internet Service** is a major churn driver. Fiber optic customers churn at substantially higher rates than DSL customers or customers without internet service, likely due to higher costs, expectations, or increased competition.
+- **Internet Service** is a major churn driver. Fiber optic customers churn at substantially higher rates than DSL customers or customers without internet service, likely due to higher pricing, expectations, or increased competition.
 
 ---
 
@@ -60,24 +60,23 @@ This section summarizes the key insights obtained from exploratory analysis of c
 
 - **Contract Type** is the strongest categorical predictor of churn. Month-to-month customers churn at extremely high rates, while one-year and two-year contract customers are significantly more stable.
 
-- **Tenure** exhibits a strong lifecycle effect. Customers in the first six months have the highest churn risk, and churn decreases sharply as tenure increases. Long-tenured customers are far more loyal.
+- **Tenure** exhibits a strong lifecycle effect. Customers in the first six months have the highest churn risk, and churn decreases sharply as tenure increases. Correlation analysis confirms tenure as the strongest numerical churn signal.
 
 ---
 
 ### Revenue and Customer Value
 
-- **Monthly Charges** are positively associated with churn. Customers with higher recurring charges are more likely to churn, indicating price sensitivity.
+- **Monthly Charges** show a weak-to-moderate positive relationship with churn. Higher monthly charges increase churn risk, but the relationship is not strongly linear and is influenced by contract type and tenure.
 
-- **Total Charges** primarily reflect tenure-driven behavior. Most churn occurs before customers accumulate high total spending, reinforcing the importance of early-stage retention efforts.
+- **Total Charges** show a weak negative correlation with churn, largely reflecting tenure effects. Customers who remain longer accumulate higher total charges and are less likely to churn.
 
-- **Customer Lifetime Value (CLTV)** shows that lower-value customers churn more frequently, while higher-value customers tend to be more loyal. CLTV is therefore useful for prioritizing retention strategies.
+- **Customer Lifetime Value (CLTV)** exhibits a weak negative relationship with churn. Higher-value customers tend to be more loyal, though CLTV is more useful for business prioritization than as a dominant predictive feature.
 
----
 ---
 
 ## Feature Strength Summary
 
-Based on exploratory data analysis and churn rate comparisons, features were qualitatively categorized by their observed relationship with customer churn. This categorization is intended to guide modeling decisions and feature prioritization, not to replace model-based feature importance.
+Feature strength categories are based on univariate churn rates, distributional separation, and correlation analysis. This classification is intended to guide modeling decisions and does not replace model-based feature importance.
 
 ---
 
@@ -101,7 +100,7 @@ These features show clear and consistent separation between churned and retained
 
 ### Medium-Strength Predictors
 
-These features show meaningful trends but with noticeable overlap between churned and retained customers. Their predictive value is often enhanced when combined with stronger features.
+These features show meaningful trends but with noticeable overlap between churned and retained customers. Their predictive value is often enhanced when combined with stronger predictors.
 
 - Monthly Charges  
 - Total Charges  
@@ -125,6 +124,6 @@ These features exhibit minimal churn separation or inconsistent patterns and are
 
 ### Notes
 
-- Feature strength classification is based on univariate and bivariate exploratory analysis only.  
-- Final feature selection will be guided by model performance, cross-validation results, and feature importance analysis.  
-- Weak predictors are not dropped upfront and may still be retained if they improve model generalization.
+- Feature strength classification is based on exploratory analysis only.  
+- Final feature selection will be driven by model performance, cross-validation, and feature importance analysis.  
+- Weak predictors are not dropped upfront and may still be retained if they improve generalization.
