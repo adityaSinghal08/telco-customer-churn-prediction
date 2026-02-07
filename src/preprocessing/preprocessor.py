@@ -7,7 +7,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler, OrdinalEncoder
 
 class Preprocessor(BaseEstimator, TransformerMixin):
     """
-    Custom preprocessing transformer with explicit binary handling.
+    Custom preprocessing transformer with explicit binary and categorical feature handling along with duplicate row removal and optional scaling for numerical features.
 
     Parameters
     ----------
@@ -20,6 +20,19 @@ class Preprocessor(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None):
         X = X.copy()
+
+        # -------------------------
+        # Duplicate row removal
+        # -------------------------
+        print("Removing duplicate rows...")
+        original_shape = X.shape
+        print(f"Original shape: {original_shape}")
+        X.drop_duplicates(inplace=True)
+        if X.shape[0] < original_shape[0]:
+            print(f"{original_shape[0] - X.shape[0]} duplicate rows detected.")
+            print(f"Shape after duplicate removal: {X.shape}")
+        else:
+            print("No duplicate rows detected.")
 
         # -------------------------
         # Column type identification
